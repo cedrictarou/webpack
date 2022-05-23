@@ -1,3 +1,4 @@
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -24,12 +25,15 @@ module.exports = {
   devServer: {
     static: 'dist',
     open: true,
+    watchFiles: ['src/**/*.ejs'],
   },
+
   module: {
     rules: [
       {
         // 拡張子 .js の場合
         test: /\.js$/,
+        exclude: /node_modules/,
         use: [
           {
             // Babel を利用する
@@ -48,6 +52,7 @@ module.exports = {
       // Sassファイルの読み込みとコンパイル
       {
         test: /\.scss/, // 対象となるファイルの拡張子
+        exclude: /node_modules/,
         use: [
           // CSSファイルを書き出すオプションを有効にする
           {
@@ -58,7 +63,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               // オプションでCSS内のurl()メソッドの取り込みを禁止する
-              url: false,
+              // url: false,
               // ソースマップの利用有無
               sourceMap: enabledSourceMap,
 
@@ -81,7 +86,10 @@ module.exports = {
         // 対象となるファイルの拡張子
         test: /\.(gif|png|jpg|jpeg|svg)$/,
         // 画像をBase64として取り込む
-        type: 'asset/inline',
+        generator: {
+          filename: 'images/[name][ext]',
+        },
+        type: 'asset/resource',
         use: [
           {
             loader: 'image-webpack-loader',
@@ -94,6 +102,7 @@ module.exports = {
       },
     ],
   },
+
   // ES5(IE11等)向けの指定
   target: ['web', 'es5'],
   plugins: [
