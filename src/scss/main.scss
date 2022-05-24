@@ -1,28 +1,29 @@
-@import "base";
-@import "grid";
-@import url('https: //fonts.googleapis.com/css?family=Lato:100,300,400,700,900');
+// abstracts
+@import "abstracts/functions";
+@import "abstracts/mixin";
+@import "abstracts/variables";
 
+// base
+@import "base/animation";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
+// components
+@import "components/big-video";
+@import "components/button";
+@import "components/card";
+@import "components/composition";
+@import "components/feature-box";
+@import "components/form";
+@import "components/popup";
+@import "components/story";
 
-html {
-  font-size: 62.5%;
-  box-sizing: border-box;
-}
+// layout
+@import "layout/footer";
+@import "layout/grid";
+@import "layout/header";
+@import "layout/navigation";
 
-body {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  line-height: 1.7;
-  color: #777;
-}
-
-.header {
-  height: 95vh;
-  background-image: url('../images/hero-small.jpg');
-  background-size: cover;
-}
+// pages
+@import "pages/home";
