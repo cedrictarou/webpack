@@ -19,7 +19,7 @@ module.exports = {
     //  出力ファイルのディレクトリ名
     path: `${__dirname}/dist`,
     // 出力ファイル名
-    filename: 'javascripts/main.js',
+    filename: 'javascripts/[name].js',
   },
   devServer: {
     static: 'dist',
@@ -58,7 +58,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               // オプションでCSS内のurl()メソッドの取り込みを禁止する
-              url: false,
+              // url: false,
               // ソースマップの利用有無
               sourceMap: enabledSourceMap,
 
